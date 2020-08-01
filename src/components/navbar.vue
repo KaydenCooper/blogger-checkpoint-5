@@ -37,9 +37,16 @@
           <router-link class="nav-link text-light" :to="{ name: 'Profile' }">Profile</router-link>
         </li>
       </ul>
+      <button
+        type="button"
+        data-toggle="modal"
+        data-target="#blog-modal"
+        class="btn btn-success mx-1"
+      >Create New Blog</button>
+      <blogModal />
       <span class="navbar-text">
-        <button class="btn btn-outline-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-outline-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button class="btn btn-danger" @click="logout" v-else>Logout</button>
       </span>
     </div>
   </nav>
@@ -48,6 +55,7 @@
 <script>
 import { getUserData } from "@bcwdev/auth0-vue";
 import { setBearer, api } from "../store/AxiosStore";
+import BlogModal from "../components/BlogModal";
 export default {
   name: "Navbar",
   methods: {
@@ -63,6 +71,9 @@ export default {
       this.$store.dispatch("resetBearer");
       await this.$auth.logout({ returnTo: window.location.origin });
     },
+  },
+  components: {
+    BlogModal,
   },
 };
 </script>
