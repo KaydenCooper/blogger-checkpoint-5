@@ -15,8 +15,6 @@
               <input
                 v-model="createBlog.title"
                 type="text"
-                name
-                id
                 class="form-control"
                 placeholder="Enter Title...."
               />
@@ -26,8 +24,6 @@
               <input
                 v-model="createBlog.body"
                 type="text"
-                name
-                id
                 class="form-control text-wrap"
                 placeholder="Enter Blog...."
               />

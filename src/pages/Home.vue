@@ -8,10 +8,10 @@
           </div>
           <div class="card-body">
             <p class="card-text">{{blog.body}}</p>
-            <button
-              class="btn btn-outline-success btn-block"
-              @click="getBlogDetails(blog.id)"
-            >Details...</button>
+            <hr />
+            <p v-if="blog.creator" class="card-text">Creator: {{blog.creator.name}}</p>
+
+            <button class="btn btn-outline-success btn-block" @click="getBlog(blog.id)">Details...</button>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@ export default {
     this.$store.dispatch("getAllBlogs");
   },
   methods: {
-    getBlogDetails(id) {
+    getBlog(id) {
       this.$router.push({
         name: "blogdetails",
         params: { id: id },

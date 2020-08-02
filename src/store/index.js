@@ -32,9 +32,39 @@ export default new Vuex.Store({
     resetBearer() {
       api.defaults.headers.authorization = "";
     },
-    async deleteBlog({ commit, dispatch, state }, blogId) {
+    async editBlog({ dispatch }, updatedBlog) {
+      try {
+        let res = await api.put("blogs/" + updatedBlog.id, updatedBlog.data)
+        dispatch("setActiveBlog")
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteComment({ commit, dispatch }, commentId) {
       try {
         debugger
+        let res = await api.delete("comments/" + commentId)
+        commit("setActiveBlog", {})
+
+
+
+
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async addComment({ commit, dispatch, state }, blogDetailsData) {
+      try {
+
+        let res = await api.post("comments/", blogDetailsData)
+        commit("setActiveBlog", res.data)
+        dispatch("getBlog", blogDetailsData.blogId)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteBlog({ commit, dispatch, state }, blogId) {
+      try {
         let res = await api.delete("blogs/" + blogId)
         router.push({ name: "Home" })
         commit("setActiveBlog", {})
@@ -55,6 +85,7 @@ export default new Vuex.Store({
         let res = await api.get("blogs/" + blogId)
         console.log(res.data);
         commit("setActiveBlog", res.data)
+
       } catch (error) {
         console.error(error);
       }

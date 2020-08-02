@@ -1,8 +1,8 @@
 <template>
   <div class="comments">
     <p>
-      <button type="button" class="close" aria-label="Close"></button>
-      <u>{{commentsData.creator.name}}</u>
+      <button type="button" class="close" aria-label="Close" @click.prevent="deleteComment"></button>
+      <u v-if="commentsData.creator">{{commentsData.creator.name}}</u>
       : {{commentsData.body}}
     </p>
     <hr />
@@ -18,7 +18,11 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    deleteComment() {
+      this.$store.dispatch("deleteComment", this.commentsData.id);
+    },
+  },
   components: {},
 };
 </script>
