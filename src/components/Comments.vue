@@ -1,7 +1,13 @@
 <template>
   <div class="comments">
     <p v-if="commentsData.creator">
-      <button type="button" class="close" aria-label="Close" @click.prevent="deleteComment"></button>
+      <button
+        v-if="commentsData.creator.email == $auth.user.email"
+        type="button"
+        class="close"
+        aria-label="Close"
+        @click.prevent="deleteComment"
+      ></button>
 
       <img class="img-fluid border rounded" width="35vw" :src="commentsData.creator.picture" alt />
       {{commentsData.creator.name}}

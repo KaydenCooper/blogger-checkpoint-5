@@ -47,6 +47,7 @@
             </div>
           </div>
           <button
+            v-if="blog.creator.email == $auth.user.email"
             type="button"
             data-toggle="modal"
             data-target="#edit-modal"
@@ -54,6 +55,7 @@
           >Edit</button>
           <editModal :editBlogData="blog" />
           <button
+            v-if="blog.creator.email == $auth.user.email"
             type="button"
             class="btn btn-danger btn-block border-primary"
             @click="deleteBlog"
