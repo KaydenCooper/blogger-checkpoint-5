@@ -2,16 +2,21 @@
   <div class="home container-fluid">
     <div class="row justify-content-center">
       <div class="col-3" v-for="blog in blogs" :key="blog.id">
-        <div class="card text-center text-white bg-secondary m-3" style="max-width: 20rem;">
+        <div
+          class="card text-center shadow-lg text-white bg-secondary m-3"
+          style="max-width: 20rem;"
+        >
           <div class="card-header">
             <h3>{{blog.title}}</h3>
           </div>
           <div class="card-body">
-            <p class="card-text">{{blog.body}}</p>
-            <hr />
-            <p v-if="blog.creator" class="card-text">Creator: {{blog.creator.name}}</p>
+            <p v-if="blog.creator" class="card-text">
+              <u>Author:</u>
+              <br />
+              {{blog.creator.name}}
+            </p>
 
-            <button class="btn btn-outline-success btn-block" @click="getBlog(blog.id)">Details...</button>
+            <button class="btn btn-outline-success btn-block" @click="getBlog(blog.id)">READ BLOG...</button>
           </div>
         </div>
       </div>
@@ -42,3 +47,8 @@ export default {
   components: {},
 };
 </script>
+<style >
+.shadow-lg {
+  box-shadow: 0 0rem 1rem rgba(255, 255, 255, 0.288) !important;
+}
+</style>

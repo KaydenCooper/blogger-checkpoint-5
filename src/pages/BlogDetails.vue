@@ -2,12 +2,15 @@
   <div class="blog-details">
     <div class="row justify-content-center">
       <div class="col-3">
-        <div class="card text-white bg-secondary m-3" style="max-width: 20rem;">
+        <div class="card shadow-lg text-white bg-secondary m-3" style="max-width: 20rem;">
           <div class="card-header text-center">
-            <h1>{{blog.title}}</h1>
+            <h1>
+              <u>{{blog.title}}</u>
+            </h1>
           </div>
           <div class="card-body">
-            <p class="card-text text-center">{{blog.body}}</p>
+            <h2 class="card-text text-center">{{blog.body}}</h2>
+            <hr />
             <p v-if="blog.creator" class="card-text text-center">Creator: {{blog.creator.name}}</p>
             <button
               type="button"
@@ -15,7 +18,7 @@
               data-target="#edit-modal"
               class="btn btn-outline-info btn-block"
             >Edit</button>
-            <editModal />
+            <editModal :editBlogData="blog" />
             <hr />
 
             <h3 class="text-center">
@@ -87,4 +90,7 @@ export default {
 
 
 <style scoped>
+.shadow-lg {
+  box-shadow: 0 0rem 1rem rgba(255, 255, 255, 0.288) !important;
+}
 </style>

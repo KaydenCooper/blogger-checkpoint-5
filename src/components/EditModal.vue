@@ -12,7 +12,7 @@
                 <u>Edit Blog:</u>
               </h5>
               <input
-                v-model="editedBlog.body"
+                v-model="changedBlog.body"
                 type="text"
                 class="form-control text-wrap"
                 placeholder="Edit Blog...."
@@ -33,9 +33,10 @@
 <script>
 export default {
   name: "editModal",
+  props: ["editBlogData"],
   data() {
     return {
-      editedBlog: {},
+      changedBlog: {},
     };
   },
   computed: {
@@ -47,9 +48,11 @@ export default {
     editBlog() {
       debugger;
       this.$store.dispatch("editBlog", {
-        data: editedBlog,
-        id: this.$route.params._id,
+        body: this.changedBlog,
+        _id: this.editBlogData.id,
       });
+      this.changedBlog = {};
+      $("#edit-modal").modal("hide");
     },
   },
   components: {},

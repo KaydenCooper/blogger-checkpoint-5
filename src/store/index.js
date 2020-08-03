@@ -32,19 +32,22 @@ export default new Vuex.Store({
     resetBearer() {
       api.defaults.headers.authorization = "";
     },
-    async editBlog({ dispatch }, updatedBlog) {
+    async editBlog({ commit, dispatch }, BlogData) {
       try {
-        let res = await api.put("blogs/" + updatedBlog.id, updatedBlog.data)
-        dispatch("setActiveBlog")
+
+        let res = await api.put("blogs/" + BlogData._id, BlogData.body)
+        commit("setActiveBlog", {})
+        dispatch("getBlog", BlogData._id)
       } catch (error) {
         console.error(error);
       }
     },
     async deleteComment({ commit, dispatch }, commentId) {
       try {
-        debugger
+
         let res = await api.delete("comments/" + commentId)
         commit("setActiveBlog", {})
+        dispatch("setActiveBlog", commentId)
 
 
 
