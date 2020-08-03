@@ -1,9 +1,9 @@
 <template>
-  <div class="blog-details">
+  <div class="blog-details container-fluid">
     <div class="row justify-content-center">
-      <div class="col-3">
-        <div class="card shadow-lg text-white bg-secondary m-3" style="max-width: 20rem;">
-          <div class="card-header text-center">
+      <div class="col-10 text-center">
+        <div class="card shadow-lg text-white bg-secondary m-3">
+          <div class="card-header text-uppercase bg-primary text-center">
             <h1>
               <u>{{blog.title}}</u>
             </h1>
@@ -12,13 +12,7 @@
             <h2 class="card-text text-center">{{blog.body}}</h2>
             <hr />
             <p v-if="blog.creator" class="card-text text-center">Creator: {{blog.creator.name}}</p>
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#edit-modal"
-              class="btn btn-outline-info btn-block"
-            >Edit</button>
-            <editModal :editBlogData="blog" />
+
             <hr />
 
             <h3 class="text-center">
@@ -33,13 +27,37 @@
                   placeholder="Add New Comment..."
                 />
                 <div class="input-group-append">
-                  <button class="btn btn-outline-success" type="submit">Submit</button>
+                  <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
               </div>
             </form>
-            <comments v-for="comment in activeComments" :commentsData="comment" :key="comment.id" />
+            <button
+              class="btn btn-primary border-light btn-block"
+              type="button"
+              data-target="#comment"
+              data-toggle="collapse"
+            >Comments</button>
+            <hr />
+            <div id="comment" class="collapse">
+              <comments
+                v-for="comment in activeComments"
+                :commentsData="comment"
+                :key="comment.id"
+              />
+            </div>
           </div>
-          <button type="button" class="btn btn-danger btn-block" @click="deleteBlog">DELETE BLOG</button>
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#edit-modal"
+            class="btn btn-primary btn-block"
+          >Edit</button>
+          <editModal :editBlogData="blog" />
+          <button
+            type="button"
+            class="btn btn-danger btn-block border-primary"
+            @click="deleteBlog"
+          >DELETE BLOG</button>
         </div>
       </div>
     </div>

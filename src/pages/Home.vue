@@ -6,17 +6,22 @@
           class="card text-center shadow-lg text-white bg-secondary m-3"
           style="max-width: 20rem;"
         >
-          <div class="card-header">
+          <div class="card-header text-uppercase bg-primary">
             <h3>{{blog.title}}</h3>
           </div>
           <div class="card-body">
             <p v-if="blog.creator" class="card-text">
               <u>Author:</u>
               <br />
+              <img class="img-fluid img-thumbnail" width="100vw" :src="blog.creator.picture" alt />
+              <br />
               {{blog.creator.name}}
             </p>
 
-            <button class="btn btn-outline-success btn-block" @click="getBlog(blog.id)">READ BLOG...</button>
+            <button
+              class="btn btn-primary border-light btn-block"
+              @click="getBlog(blog.id)"
+            >READ BLOG...</button>
           </div>
         </div>
       </div>

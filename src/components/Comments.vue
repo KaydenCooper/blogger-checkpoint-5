@@ -1,8 +1,10 @@
 <template>
   <div class="comments">
-    <p>
+    <p v-if="commentsData.creator">
       <button type="button" class="close" aria-label="Close" @click.prevent="deleteComment"></button>
-      <u v-if="commentsData.creator">{{commentsData.creator.name}}</u>
+
+      <img class="img-fluid border rounded" width="35vw" :src="commentsData.creator.picture" alt />
+      {{commentsData.creator.name}}
       : {{commentsData.body}}
     </p>
     <hr />
