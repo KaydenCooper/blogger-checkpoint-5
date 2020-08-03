@@ -46,8 +46,7 @@ export default new Vuex.Store({
       try {
 
         let res = await api.delete("comments/" + commentId)
-        commit("setActiveBlog", {})
-        dispatch("setActiveBlog", commentId)
+        dispatch("getBlog", this.state.activeBlog.id)
 
 
 
